@@ -15,16 +15,6 @@ router.get('/', (request, response) => {
         }
         else {
             const sql = 'select * from topic;';
-            const authorSql = 'select * from user';
-            conn.query(authorSql, (err2, result) => {
-                if (err2) {
-                    conn.release();
-                    response.send('sql 실패');
-                    throw err2;
-                }
-                else
-                    body += template.authorList(result);
-            });
 
             conn.query(sql, (err2, result) => {
                 if (err2) {

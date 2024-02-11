@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 module.exports = {
     HTML: function (body = '', memberStatusUI = `
     <a href="/member/login">로그인</a>
@@ -54,7 +56,11 @@ module.exports = {
     topicView: function (topic, owner = '') {
         return `
         <div id="topic_title"><h1 id="topic_title">${topic.title}</h1>${owner}</div>
-        <div id="topic_author"><h5>by <a href="/author/${topic.User_id}">${topic.User_id}</a></h5></div>
+        <div>
+            <div id="topic_author"><h5>by <a href="/author/${topic.User_id}">${topic.User_id}</a></h5></div>
+            <div>생성된 날짜 : ${moment(topic.createdDate).format("YYYY-MM-DD HH:mm:ss a")}</div>
+            <div>마지막으로 수정된 날짜 : ${moment(topic.updatedDate).format("YYYY-MM-DD HH:mm:ss a")}</div>
+        </div>
         <div id="topic_description">
             <div>${topic.description}</div>
         </div>
